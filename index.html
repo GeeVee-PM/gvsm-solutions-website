@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GVSM Solutions — Practical support for better project outcomes</title>
+<meta name="description" content="GVSM Solutions helps businesses plan and deliver projects, find fit-for-purpose solutions, navigate procurement and RFP processes, and gain independent assurance over delivery.">
+<style>
+  :root{
+    --navy:#0a2a5c;
+    --navy-dark:#061d40;
+    --navy-deep:#04142e;
+    --orange:#f58220;
+    --orange-light:#ff9d4d;
+    --ink:#1c2b45;
+    --muted:#5a6b85;
+    --bg:#f7f9fc;
+    --white:#ffffff;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(6,29,64,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;}
+  h1,h2,h3{color:var(--navy);line-height:1.15;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .container{width:min(1140px,92%);margin:0 auto;}
+
+  /* ---------- Nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(6,29,64,.96);backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.18);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+  .logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:1.25rem;letter-spacing:.04em;}
+  .logo .mark{width:34px;height:34px;flex:none;}
+  .logo small{display:block;font-size:.6rem;font-weight:400;letter-spacing:.42em;color:#bcd0ee;margin-top:1px;}
+  .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+  .nav-links a{color:#dbe7f8;font-size:.95rem;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--orange-light);}
+  .btn{display:inline-block;background:var(--orange);color:#fff;font-weight:600;padding:11px 24px;border-radius:8px;transition:transform .18s,box-shadow .18s,background .18s;}
+  .btn:hover{background:#e06f10;transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,130,32,.35);}
+  .btn-outline{background:transparent;border:2px solid var(--orange);color:var(--orange);}
+  .btn-outline:hover{background:var(--orange);color:#fff;}
+  .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,#103a7a 100%);color:#fff;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(600px 400px at 85% 20%,rgba(245,130,32,.22),transparent 60%),
+    radial-gradient(500px 500px at 10% 90%,rgba(60,120,220,.25),transparent 60%);}
+  .hero-inner{position:relative;padding:96px 0 110px;max-width:760px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--orange-light);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:18px;}
+  .eyebrow::before{content:"";width:34px;height:3px;background:var(--orange);border-radius:2px;}
+  .hero h1{color:#fff;font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:20px;}
+  .hero h1 span{color:var(--orange);}
+  .hero p{font-size:1.15rem;color:#d7e3f5;max-width:620px;margin-bottom:34px;}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero .btn-outline{border-color:rgba(255,255,255,.55);color:#fff;}
+  .hero .btn-outline:hover{border-color:var(--orange);}
+  .chevron-deco{position:absolute;right:-40px;bottom:-60px;width:340px;opacity:.9;pointer-events:none;}
+  .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:44px;}
+  .tag{border:1px solid rgba(255,255,255,.3);color:#e6effc;font-size:.82rem;font-weight:600;letter-spacing:.06em;padding:7px 16px;border-radius:999px;}
+
+  /* ---------- Sections ---------- */
+  section{padding:84px 0;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head .eyebrow{color:var(--orange);}
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:14px;}
+  .section-head p{color:var(--muted);font-size:1.05rem;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--bg);}
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .about-grid h3{font-size:1.35rem;margin-bottom:12px;}
+  .about-grid p{color:var(--muted);margin-bottom:16px;}
+  .about-card{background:var(--navy);color:#fff;border-radius:var(--radius);padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+  .about-card::after{content:"";position:absolute;right:-70px;bottom:-70px;width:200px;height:200px;background:linear-gradient(135deg,var(--orange),#ffb066);transform:rotate(45deg);opacity:.35;border-radius:24px;}
+  .about-card h3{color:#fff;}
+  .about-card p{color:#d7e3f5;}
+  .about-card .btn{position:relative;z-index:1;margin-top:8px;}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;}
+  .service-card{background:#fff;border:1px solid #e5ecf6;border-radius:var(--radius);padding:32px 28px;box-shadow:0 4px 14px rgba(6,29,64,.05);transition:transform .2s,box-shadow .2s,border-color .2s;}
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#ffd3ab;}
+  .service-num{width:46px;height:46px;border-radius:50%;background:var(--orange);color:#fff;font-weight:700;font-size:1.15rem;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .service-card h3{font-size:1.15rem;margin-bottom:10px;}
+  .service-card p{color:var(--muted);font-size:.95rem;}
+
+  /* ---------- Process ---------- */
+  .process{background:linear-gradient(180deg,var(--bg),#fff);}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:step;}
+  .step{background:#fff;border-top:4px solid var(--orange);border-radius:0 0 var(--radius) var(--radius);padding:28px 24px;box-shadow:0 4px 14px rgba(6,29,64,.06);}
+  .step h3{font-size:1.05rem;margin:14px 0 8px;}
+  .step p{color:var(--muted);font-size:.92rem;}
+  .step .num{font-size:2rem;font-weight:800;color:#e9eef7;}
+
+  /* ---------- CTA / Contact ---------- */
+  .cta{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+  .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 90% 10%,rgba(245,130,32,.25),transparent 60%);}
+  .cta-inner{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;}
+  .cta h2{color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:14px;}
+  .cta p{color:#d7e3f5;max-width:520px;}
+  .contact-card{background:#fff;border-radius:var(--radius);padding:34px;box-shadow:var(--shadow);color:var(--ink);}
+  .contact-card h3{margin-bottom:16px;}
+  .contact-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;color:var(--muted);}
+  .contact-row a{color:var(--navy);font-weight:600;word-break:break-all;}
+  .contact-row a:hover{color:var(--orange);}
+  .icon{width:42px;height:42px;flex:none;border-radius:50%;background:#fff2e5;display:flex;align-items:center;justify-content:center;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--navy-deep);color:#8fa6c9;padding:28px 0;font-size:.9rem;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  footer a:hover{color:#fff;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    .about-grid,.cta-inner{grid-template-columns:1fr;}
+    .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--navy-dark);flex-direction:column;padding:20px 5%;gap:18px;display:none;align-items:flex-start;}
+    .nav-links.open{display:flex;}
+    .menu-toggle{display:block;}
+    section{padding:64px 0;}
+    .hero-inner{padding:72px 0 84px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======= NAV ======= -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#top" class="logo" aria-label="GVSM Solutions home">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M4 8 L20 4 L20 14 L12 16.5 L20 26 L12 28.5 L4 20 Z" fill="#ffffff"/>
+        <path d="M36 32 L20 36 L20 26 L28 23.5 L20 14 L28 11.5 L36 20 Z" fill="#f58220"/>
+      </svg>
+      <span>GVSM<small>SOLUTIONS</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">How We Help</a></li>
+      <li><a href="#process">Approach</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="btn">Get in Touch</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- ======= HERO ======= -->
+<header class="hero" id="top">
+  <div class="container hero-inner">
+    <span class="eyebrow">GVSM Solutions Capability Statement</span>
+    <h1>Practical support for <span>better project outcomes</span></h1>
+    <p>We help businesses make informed decisions, choose the right solutions and deliver change with confidence — translating complex needs into practical results.</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn">How We Help</a>
+      <a href="#contact" class="btn btn-outline">Start a Conversation</a>
+    </div>
+    <div class="tags">
+      <span class="tag">Delivery</span>
+      <span class="tag">Solutions</span>
+      <span class="tag">Procurement</span>
+      <span class="tag">Assurance</span>
+    </div>
+  </div>
+  <svg class="chevron-deco" viewBox="0 0 200 200" aria-hidden="true">
+    <path d="M40 200 L40 120 L120 120 L120 40 L200 40 L200 200 Z" fill="#f58220" opacity="0.9"/>
+    <path d="M40 120 L40 60 L100 60 L100 120 Z" fill="#0a2a5c" opacity="0.55"/>
+  </svg>
+</header>
+
+<!-- ======= ABOUT ======= -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="section-head" style="margin-bottom:26px;">
+        <span class="eyebrow">From business challenge to successful delivery</span>
+        <h2>Your Project Partner</h2>
+      </div>
+      <p>We help businesses translate complex needs into practical solutions. With deep experience across technology, business change and project delivery, we manage complexity, bring clarity and keep projects focused on outcomes.</p>
+      <p>At GVSM Solutions, we provide flexible, independent support across the project lifecycle — from initial planning and solution design to delivery, transition and beyond. We work alongside your team to fill capability gaps, bring the right expertise and help you achieve lasting results.</p>
+    </div>
+    <div class="about-card">
+      <h3>Independent. Practical. Outcome-focused.</h3>
+      <p style="margin-top:10px;">No jargon, no bloated frameworks — just experienced support that helps your projects land well, on time and on purpose.</p>
+      <a href="#contact" class="btn">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= SERVICES ======= -->
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How We Help</span>
+      <h2>Four ways we support your projects</h2>
+      <p>GVSM Solutions helps businesses plan and deliver projects, find fit-for-purpose solutions, navigate procurement and RFP processes, and gain independent assurance over delivery.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">1</div>
+        <h3>Project Delivery</h3>
+        <p>Plan, govern and coordinate projects from initiation through implementation and transition.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">2</div>
+        <h3>Solution Discovery</h3>
+        <p>Clarify needs, assess options and identify fit-for-purpose technology and business solutions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">3</div>
+        <h3>RFP and Procurement Support</h3>
+        <p>Shape requirements, prepare RFP documentation, support evaluation and vendor selection.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">4</div>
+        <h3>Project Assurance</h3>
+        <p>Independent health checks, delivery reviews, risk visibility and practical recovery recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PROCESS ======= -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our Approach</span>
+      <h2>A practical path to delivery</h2>
+      <p>Every engagement is different, but the discipline stays the same — clarify the challenge, define the next steps, build a practical path to delivery.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Clarify the Challenge</h3>
+        <p>Understand your business needs, constraints and what success really looks like.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Assess the Options</h3>
+        <p>Identify and evaluate fit-for-purpose solutions, not just the obvious ones.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Define the Next Steps</h3>
+        <p>Build a clear, actionable plan from procurement through to delivery and transition.</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h3>Deliver with Confidence</h3>
+        <p>Execute with governance and independent assurance, keeping outcomes in focus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CTA / CONTACT ======= -->
+<section class="cta" id="contact">
+  <div class="container cta-inner">
+    <div>
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Have a project to move forward?</h2>
+      <p>Let's clarify the challenge, define the next steps and build a practical path to delivery. Reach out to discuss how GVSM Solutions can support your next initiative.</p>
+    </div>
+    <div class="contact-card">
+      <h3>Contact Us</h3>
+      <div class="contact-row">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f58220" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        </span>
+        <span>Email us<br><a href="mailto:projects@gvsmsolutions.com.au">projects@gvsmsolutions.com.au</a></span>
+      </div>
+      <a href="mailto:projects@gvsmsolutions.com.au" class="btn" style="margin-top:10px;">Send an Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 GVSM Solutions. All rights reserved.</span>
+    <span>Delivery &nbsp;|&nbsp; Solutions &nbsp;|&nbsp; Procurement &nbsp;|&nbsp; Assurance</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+</body>
+</html>
